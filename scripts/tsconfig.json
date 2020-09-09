@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "lib": ["ES2015"],
+    "skipLibCheck": true
+  },
+  "include": ["**/*"],
+  "exclude": ["node_modules"]
+}
