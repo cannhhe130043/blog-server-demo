@@ -1,5 +1,6 @@
 import { Controller, Get, Request, UseGuards } from '@nestjs/common'
 import { AuthGuard } from '../auth/auth.guard'
+import { UserEntity } from './entities/user.entity'
 import { UsersService } from './users.service'
 
 @UseGuards(AuthGuard)
@@ -8,12 +9,12 @@ export class UsersController {
   constructor(private readonly service: UsersService) {}
 
   @Get()
-  getById(@Request() req) {
+  getById(@Request() req): Promise<UserEntity> {
     return this.service.getById(req.query.id)
   }
 
   @Get('/me')
-  me(@Request() req) {
-    return this.service.getById(req.user.id)
+  me(@Request() req): Promise<UserEntity> {
+    return this.service.getById(req.user.userId)
   }
 }
